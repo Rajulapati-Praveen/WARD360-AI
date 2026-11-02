@@ -3,8 +3,8 @@ services:
     build: ./backend
     ports: ["8000:8000"]
     environment:
-      SECRET_KEY: ${SECRET_KEY:-change-me-please-use-a-long-random-string}
-      DEVICE_API_KEY: ${DEVICE_API_KEY:-dev-device-key}
+      SECRET_KEY: ${SECRET_KEY:IXF8iXxT3X6PDCb7_7aUP4YYyz4Q1u6m_Vq7YJn5ZwpJmi5ngPm6cwAga3A4Lu6K}
+      DEVICE_API_KEY: ${DEVICE_API_KEY:1bSEJNrCE0e_RyCxOfWkPWZ4q10zm0OXkdCVdcIWSNw8c9dhlaERyUH81yU7hALA}
       CORS_ORIGINS: http://localhost:5173,http://localhost:8080
   frontend:
     build:
