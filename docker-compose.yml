@@ -1,0 +1,14 @@
+services:
+  backend:
+    build: ./backend
+    ports: ["8000:8000"]
+    environment:
+      SECRET_KEY: ${SECRET_KEY:-change-me-please-use-a-long-random-string}
+      DEVICE_API_KEY: ${DEVICE_API_KEY:-dev-device-key}
+      CORS_ORIGINS: http://localhost:5173,http://localhost:8080
+  frontend:
+    build:
+      context: ./frontend
+      args: { VITE_API_URL: http://localhost:8000 }
+    ports: ["8080:80"]
+    depends_on: [backend]
