@@ -36,6 +36,7 @@ jobs:
         working-directory: frontend
         env:
           VITE_BASE_PATH: /WARD360-AI/
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
         run: npm run build
       - name: Preserve SPA routes on GitHub Pages
         working-directory: frontend

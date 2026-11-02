@@ -12,4 +12,4 @@ services:
       - key: DEVICE_API_KEY
         generateValue: true
       - key: CORS_ORIGINS
-        value: http://localhost:5173
+        value: https://rajulapati-praveen.github.io

@@ -1,10 +1,16 @@
 # Deployment
 
-## GitHub Pages frontend-only deployment
+## GitHub Pages frontend + Render API
 
-The `.github/workflows/pages.yml` workflow builds and publishes the frontend whenever frontend files are pushed to `main`. In the repository's **Settings → Pages**, set the build and deployment source to **GitHub Actions**. The first workflow run will publish the site at `https://rajulapati-praveen.github.io/WARD360-AI/`.
+GitHub Pages hosts only the static frontend, so deploy the Python API separately for login and live features to work.
 
-This publishes only the static frontend. GitHub Pages cannot run the Python API, so login, live monitoring, and other API-backed features will not work until a backend is deployed and configured with `VITE_API_URL` and matching backend CORS settings.
+1. In Render, create a **Blueprint** from this repository. It reads `render.yaml` and creates the `ward360-api` service.
+2. Copy the deployed API URL from Render (for example, `https://ward360-api.onrender.com`).
+3. In the GitHub repository, open **Settings → Secrets and variables → Actions → Variables**, add a repository variable named `VITE_API_URL` with that API URL (no trailing slash).
+4. In **Settings → Pages**, ensure the source is **GitHub Actions**. The `.github/workflows/pages.yml` workflow builds and publishes the frontend on pushes to `main`; re-run it after setting `VITE_API_URL` (Actions → Deploy frontend to GitHub Pages → Run workflow).
+5. Visit `https://rajulapati-praveen.github.io/WARD360-AI/` and verify the backend at `<backend-url>/api/health`.
+
+The Render Blueprint sets `CORS_ORIGINS` to `https://rajulapati-praveen.github.io`. Free Render services use ephemeral local storage, so SQLite data can be lost when the service restarts.
 
 ## Render backend + Vercel frontend
 
