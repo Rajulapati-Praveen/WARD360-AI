@@ -1,5 +1,11 @@
 # Deployment
 
+## GitHub Pages frontend-only deployment
+
+The `.github/workflows/pages.yml` workflow builds and publishes the frontend whenever frontend files are pushed to `main`. In the repository's **Settings → Pages**, set the build and deployment source to **GitHub Actions**. The first workflow run will publish the site at `https://rajulapati-praveen.github.io/WARD360-AI/`.
+
+This publishes only the static frontend. GitHub Pages cannot run the Python API, so login, live monitoring, and other API-backed features will not work until a backend is deployed and configured with `VITE_API_URL` and matching backend CORS settings.
+
 ## Render backend + Vercel frontend
 
 1. In Render, create a **Blueprint** from this GitHub repository. It reads `render.yaml` and creates the `ward360-api` web service. The secret keys are generated automatically.

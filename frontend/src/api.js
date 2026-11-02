@@ -10,7 +10,7 @@ export async function api(path, { method = 'GET', body, raw } = {}) {
   })
   if (res.status === 401 && token) {
     localStorage.removeItem('w360_token')
-    window.location.href = '/login'
+    window.location.href = `${import.meta.env.BASE_URL}login`
   }
   if (!res.ok) {
     const e = await res.json().catch(() => ({}))
