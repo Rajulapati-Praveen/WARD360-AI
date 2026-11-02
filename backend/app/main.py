@@ -10,6 +10,7 @@ from sqlalchemy.orm import Session
 from . import models, services
 from .config import settings
 from .database import Base, SessionLocal, engine, get_db
+from .seed_data import seed
 from .routers import admin, alerts, auth, monitoring, patients, reports, simulator
 from .security import allowed_patient_ids, user_from_token
 from .simulator_runtime import runtime
@@ -40,6 +41,10 @@ async def monitor_loop():
 async def lifespan(app: FastAPI):
     # Initialize database tables
     Base.metadata.create_all(bind=engine)
+
+    # Initialize synthetic demo accounts and sample data
+    with SessionLocal() as db:
+        seed(db)
 
     # Start background monitoring
     task = None
