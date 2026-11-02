@@ -978,12 +978,14 @@ another one.
 **Port 5173 is busy**
 
 Vite may print an alternative port such as 5174. Open the exact URL it
-prints.
+prints. The backend CORS configuration allows both the default 5173 port
+and Vite's 5174 fallback port.
 
 **Frontend cannot connect to backend**
 
 Confirm the backend is running, `/docs` opens, the frontend API base URL
-points to the correct backend, and CORS permits the frontend origin.
+points to the correct backend, and CORS permits the frontend origin. If
+you changed backend CORS settings, restart the backend to apply them.
 Check the browser console and backend terminal for errors.
 
 **Demo login or database is missing**
